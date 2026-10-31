@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>সংখ্যা থেকে বাংলা কথায়</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#f6f7f9;--card:#fff;--text:#1b1f24;--muted:#5d6670;--accent:#0f766e;--border:#d9dee4;--out:#e6f4f1;color-scheme:light}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#12161a;--card:#1b2127;--text:#e9edf1;--muted:#9aa6b2;--accent:#2dd4bf;--border:#2e3740;--out:#173530;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#12161a;--card:#1b2127;--text:#e9edf1;--muted:#9aa6b2;--accent:#2dd4bf;--border:#2e3740;--out:#173530;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Noto Sans Bengali","Hind Siliguri",system-ui,sans-serif;display:flex;justify-content:center;padding:20px 14px}
+.card{width:100%;max-width:480px;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px}
+h1{font-size:1.3rem;margin:0 0 4px}
+p.sub{margin:0 0 18px;color:var(--muted);font-size:.92rem}
+input[type=text]{width:100%;font-size:1.4rem;padding:12px 14px;border-radius:10px;border:1px solid var(--border);background:var(--bg);color:var(--text)}
+label{display:flex;align-items:center;gap:8px;margin:12px 0;font-size:.95rem}
+.out{background:var(--out);border-radius:10px;padding:14px;min-height:60px;font-size:1.15rem;line-height:1.6;word-break:break-word}
+button{margin-top:12px;padding:10px 16px;border:0;border-radius:10px;background:var(--accent);color:var(--bg);font-size:1rem;cursor:pointer}
+.err{color:#c0392b;font-size:.9rem;min-height:1.2em;margin-top:6px}
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>সংখ্যা থেকে বাংলা কথায়</h1>
+  <p class="sub">বাংলা বা ইংরেজি সংখ্যা লিখুন, কথায় রূপ দেখুন।</p>
+  <input id="n" type="text" inputmode="numeric" placeholder="যেমন: ১২৫০০" autocomplete="off">
+  <div class="err" id="err"></div>
+  <label><input type="checkbox" id="tk" checked> শেষে “টাকা মাত্র” যোগ করুন</label>
+  <div class="out" id="out">ফলাফল এখানে দেখাবে</div>
+  <button id="cp">কপি করুন</button>
+</div>
+<script>
+const W="শূন্য,এক,দুই,তিন,চার,পাঁচ,ছয়,সাত,আট,নয়,দশ,এগারো,বারো,তেরো,চৌদ্দ,পনেরো,ষোলো,সতেরো,আঠারো,উনিশ,বিশ,একুশ,বাইশ,তেইশ,চব্বিশ,পঁচিশ,ছাব্বিশ,সাতাশ,আঠাশ,ঊনত্রিশ,ত্রিশ,একত্রিশ,বত্রিশ,তেত্রিশ,চৌত্রিশ,পঁয়ত্রিশ,ছত্রিশ,সাঁইত্রিশ,আটত্রিশ,ঊনচল্লিশ,চল্লিশ,একচল্লিশ,বিয়াল্লিশ,তেতাল্লিশ,চুয়াল্লিশ,পঁয়তাল্লিশ,ছেচল্লিশ,সাতচল্লিশ,আটচল্লিশ,ঊনপঞ্চাশ,পঞ্চাশ,একান্ন,বায়ান্ন,তিপ্পান্ন,চুয়ান্ন,পঞ্চান্ন,ছাপ্পান্ন,সাতান্ন,আটান্ন,ঊনষাট,ষাট,একষট্টি,বাষট্টি,তেষট্টি,চৌষট্টি,পঁয়ষট্টি,ছেষট্টি,সাতষট্টি,আটষট্টি,ঊনসত্তর,সত্তর,একাত্তর,বাহাত্তর,তিয়াত্তর,চুয়াত্তর,পঁচাত্তর,ছিয়াত্তর,সাতাত্তর,আটাত্তর,ঊনাশি,আশি,একাশি,বিরাশি,তিরাশি,চুরাশি,পঁচাশি,ছিয়াশি,সাতাশি,আটাশি,ঊননব্বই,নব্বই,একানব্বই,বিরানব্বই,তিরানব্বই,চুরানব্বই,পঁচানব্বই,ছিয়ানব্বই,সাতানব্বই,আটানব্বই,নিরানব্বই".split(",");
+function conv(n){
+  if(n===0)return W[0];
+  const o=[];
+  const cr=Math.floor(n/1e7); if(cr){o.push((cr>=100?conv(cr):W[cr])+" কোটি");} n%=1e7;
+  const lk=Math.floor(n/1e5); if(lk){o.push(W[lk]+" লক্ষ");} n%=1e5;
+  const th=Math.floor(n/1e3); if(th){o.push(W[th]+" হাজার");} n%=1e3;
+  const h=Math.floor(n/100); if(h){o.push(W[h]+" শত");} n%=100;
+  if(n){o.push(W[n]);}
+  return o.join(" ");
+}
+const inp=document.getElementById("n"),out=document.getElementById("out"),err=document.getElementById("err"),tk=document.getElementById("tk");
+function run(){
+  err.textContent="";
+  let s=inp.value.replace(/[০-৯]/g,d=>"০১২৩৪৫৬৭৮৯".indexOf(d)).replace(/[,\s]/g,"");
+  if(!s){out.textContent="ফলাফল এখানে দেখাবে";return;}
+  if(!/^\d+$/.test(s)){err.textContent="শুধু সংখ্যা লিখুন";return;}
+  if(s.length>14){err.textContent="সর্বোচ্চ ১৪ অঙ্ক";return;}
+  out.textContent=conv(Number(s))+(tk.checked?" টাকা মাত্র":"");
+}
+inp.addEventListener("input",run);tk.addEventListener("change",run);
+document.getElementById("cp").addEventListener("click",()=>{
+  try{navigator.clipboard.writeText(out.textContent);}catch(e){}
+});
+</script>
+</body>
+</html>
