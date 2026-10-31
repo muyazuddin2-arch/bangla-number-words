@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>সংখ্যা থেকে বাংলা কথায় রূপান্তর | টাকার অঙ্ক কথায় লিখুন</title>
+<meta name="description" content="ফ্রি অনলাইন টুল: যেকোনো সংখ্যা বা টাকার অঙ্ক বাংলা কথায় লিখুন। চেক, ভাউচার ও বিলের জন্য নির্ভুল রূপান্তর, যেমন ১২৫০০ = বারো হাজার পাঁচ শত।">
+<link rel="canonical" href="https://muyazuddin2-arch.github.io/bangla-number-words/">
+<meta property="og:title" content="সংখ্যা থেকে বাংলা কথায় রূপান্তর">
+<meta property="og:description" content="যেকোনো সংখ্যা বা টাকার অঙ্ক এক চাপে বাংলা কথায় লিখুন। সম্পূর্ণ ফ্রি।">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0f766e">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f3f6f8;--card:#ffffff;--text:#16202a;--muted:#5b6773;--accent:#0f766e;--accent-2:#14b8a6;
+  --border:#dfe5ea;--out:#e8f5f2;--chip:#eef2f5;--on-accent:#ffffff;--shadow:0 10px 30px rgba(15,40,60,.08);
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f1418;--card:#182027;--text:#e8edf1;--muted:#97a4b0;--accent:#2dd4bf;--accent-2:#14b8a6;
+    --border:#2a343d;--out:#14302c;--chip:#222c35;--on-accent:#06201c;--shadow:0 10px 30px rgba(0,0,0,.35);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f1418;--card:#182027;--text:#e8edf1;--muted:#97a4b0;--accent:#2dd4bf;--accent-2:#14b8a6;
+  --border:#2a343d;--out:#14302c;--chip:#222c35;--on-accent:#06201c;--shadow:0 10px 30px rgba(0,0,0,.35);
+  color-scheme:dark;
+}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Hind Siliguri","Noto Sans Bengali",system-ui,sans-serif;line-height:1.65}
+.wrap{max-width:720px;margin:0 auto;padding:0 16px}
+header{padding:18px 0}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.1rem}
+.logo{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:var(--on-accent);display:grid;place-items:center;font-size:1.2rem}
+.hero{text-align:center;padding:14px 0 22px}
+.hero h1{font-size:clamp(1.6rem,5vw,2.3rem);line-height:1.25;margin:0 0 8px;font-weight:700}
+.hero p{margin:0 auto;max-width:520px;color:var(--muted)}
+.card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:22px;box-shadow:var(--shadow)}
+label.l{display:block;font-weight:600;margin-bottom:8px;font-size:.95rem}
+.field{position:relative}
+.field input{width:100%;font:inherit;font-size:1.6rem;font-weight:600;padding:14px 16px;border-radius:12px;border:2px solid var(--border);background:var(--bg);color:var(--text);outline:none;transition:border-color .15s}
+.field input:focus{border-color:var(--accent)}
+.fmt{min-height:1.6em;margin:8px 2px 0;color:var(--accent);font-weight:600;font-size:1.05rem}
+.err{min-height:1.3em;color:#d64545;font-size:.9rem;margin:2px 2px 0}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 4px}
+.chip{border:1px solid var(--border);background:var(--chip);color:var(--text);border-radius:999px;padding:6px 14px;font:inherit;font-size:.92rem;cursor:pointer}
+.chip:hover{border-color:var(--accent)}
+.opt{display:flex;align-items:center;gap:10px;margin:14px 0;font-size:.97rem;cursor:pointer;user-select:none}
+.opt input{width:19px;height:19px;accent-color:var(--accent)}
+.out{background:var(--out);border:1px solid var(--border);border-radius:14px;padding:16px;min-height:78px;font-size:1.3rem;font-weight:500;line-height:1.6;word-break:break-word}
+.out.empty{color:var(--muted);font-size:1rem}
+.btns{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.btn{font:inherit;font-weight:600;border:0;border-radius:12px;padding:11px 20px;cursor:pointer;background:var(--accent);color:var(--on-accent)}
+.btn.sec{background:var(--chip);color:var(--text);border:1px solid var(--border)}
+.btn:active{transform:scale(.98)}
+section{margin-top:34px}
+section h2{font-size:1.3rem;margin:0 0 12px}
+.steps{display:grid;gap:12px}
+.step{display:flex;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 16px}
+.num{flex:none;width:32px;height:32px;border-radius:50%;background:var(--accent);color:var(--on-accent);display:grid;place-items:center;font-weight:700}
+details{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 16px;margin-bottom:10px}
+summary{cursor:pointer;font-weight:600}
+details p{margin:8px 0 0;color:var(--muted)}
+footer{margin:40px 0 24px;text-align:center;color:var(--muted);font-size:.88rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand"><span class="logo">৳</span><span>বাংলা সংখ্যা টুল</span></div>
+  </header>
+
+  <div class="hero">
+    <h1>সংখ্যা থেকে বাংলা কথায় রূপান্তর</h1>
+    <p>চেক, ভাউচার বা বিলের টাকার অঙ্ক এক নিমেষে বাংলা কথায় লিখুন। বাংলা বা ইংরেজি, যেকোনো সংখ্যা চলবে।</p>
+  </div>
+
+  <main class="card">
+    <label class="l" for="n">সংখ্যা লিখুন</label>
+    <div class="field"><input id="n" type="text" inputmode="numeric" placeholder="যেমন: ১২৫০০" autocomplete="off"></div>
+    <div class="fmt" id="fmt"></div>
+    <div class="err" id="err" role="alert"></div>
+    <div class="chips" id="chips"></div>
+    <label class="opt"><input type="checkbox" id="tk" checked> শেষে “টাকা মাত্র” যোগ করুন</label>
+    <div class="out empty" id="out">ফলাফল এখানে দেখা যাবে</div>
+    <div class="btns">
+      <button class="btn" id="cp" type="button">কপি করুন</button>
+      <button class="btn sec" id="clr" type="button">মুছুন</button>
+    </div>
+  </main>
+
+  <section>
+    <h2>কীভাবে ব্যবহার করবেন</h2>
+    <div class="steps">
+      <div class="step"><span class="num">১</span><div>ওপরের বক্সে সংখ্যাটি লিখুন। কমা দিলেও সমস্যা নেই।</div></div>
+      <div class="step"><span class="num">২</span><div>নিচে সঙ্গে সঙ্গে বাংলা কথায় রূপ দেখা যাবে।</div></div>
+      <div class="step"><span class="num">৩</span><div>“কপি করুন” চেপে যেকোনো জায়গায় পেস্ট করুন।</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>সচরাচর জিজ্ঞাসা</h2>
+    <details><summary>সর্বোচ্চ কত বড় সংখ্যা লেখা যায়?</summary><p>সর্বোচ্চ ১৪ অঙ্ক পর্যন্ত লেখা যায়। কোটি, লক্ষ, হাজার ও শতের হিসাব বাংলা পদ্ধতিতে হয়।</p></details>
+    <details><summary>ইংরেজি সংখ্যা (123) লিখলে কি কাজ করবে?</summary><p>হ্যাঁ, বাংলা (১২৩) ও ইংরেজি (123) দুই ধরনের সংখ্যাই চলবে।</p></details>
+    <details><summary>এই টুল কি ফ্রি?</summary><p>হ্যাঁ, সম্পূর্ণ বিনামূল্যে। আপনার লেখা সংখ্যা কোথাও জমা হয় না, সবকিছু আপনার ব্রাউজারেই হয়।</p></details>
+    <details><summary>ভুল পেলে কী করব?</summary><p>বানান বা সংখ্যার কথায় কোনো ভুল পেলে আমাদের জানান, আমরা দ্রুত ঠিক করব।</p></details>
+  </section>
+
+  <footer>© ২০২৬ বাংলা সংখ্যা টুল · ফ্রি ও নির্ভরযোগ্য</footer>
+</div>
+
+<script>
+const W="শূন্য,এক,দুই,তিন,চার,পাঁচ,ছয়,সাত,আট,নয়,দশ,এগারো,বারো,তেরো,চৌদ্দ,পনেরো,ষোলো,সতেরো,আঠারো,উনিশ,বিশ,একুশ,বাইশ,তেইশ,চব্বিশ,পঁচিশ,ছাব্বিশ,সাতাশ,আঠাশ,ঊনত্রিশ,ত্রিশ,একত্রিশ,বত্রিশ,তেত্রিশ,চৌত্রিশ,পঁয়ত্রিশ,ছত্রিশ,সাঁইত্রিশ,আটত্রিশ,ঊনচল্লিশ,চল্লিশ,একচল্লিশ,বিয়াল্লিশ,তেতাল্লিশ,চুয়াল্লিশ,পঁয়তাল্লিশ,ছেচল্লিশ,সাতচল্লিশ,আটচল্লিশ,ঊনপঞ্চাশ,পঞ্চাশ,একান্ন,বায়ান্ন,তিপ্পান্ন,চুয়ান্ন,পঞ্চান্ন,ছাপ্পান্ন,সাতান্ন,আটান্ন,ঊনষাট,ষাট,একষট্টি,বাষট্টি,তেষট্টি,চৌষট্টি,পঁয়ষট্টি,ছেষট্টি,সাতষট্টি,আটষট্টি,ঊনসত্তর,সত্তর,একাত্তর,বাহাত্তর,তিয়াত্তর,চুয়াত্তর,পঁচাত্তর,ছিয়াত্তর,সাতাত্তর,আটাত্তর,ঊনাশি,আশি,একাশি,বিরাশি,তিরাশি,চুরাশি,পঁচাশি,ছিয়াশি,সাতাশি,আটাশি,ঊননব্বই,নব্বই,একানব্বই,বিরানব্বই,তিরানব্বই,চুরানব্বই,পঁচানব্বই,ছিয়ানব্বই,সাতানব্বই,আটানব্বই,নিরানব্বই".split(",");
+const BN="০১২৩৪৫৬৭৮৯";
+const toBn=s=>s.replace(/\d/g,d=>BN[d]);
+function conv(n){
+  if(n===0)return W[0];
+  const o=[];
+  const cr=Math.floor(n/1e7); if(cr)o.push((cr>=100?conv(cr):W[cr])+" কোটি"); n%=1e7;
+  const lk=Math.floor(n/1e5); if(lk)o.push(W[lk]+" লক্ষ"); n%=1e5;
+  const th=Math.floor(n/1e3); if(th)o.push(W[th]+" হাজার"); n%=1e3;
+  const h=Math.floor(n/100); if(h)o.push(W[h]+" শত"); n%=100;
+  if(n)o.push(W[n]);
+  return o.join(" ");
+}
+function group(s){
+  if(s.length<=3)return s;
+  const last=s.slice(-3);let rest=s.slice(0,-3);
+  return rest.replace(/\B(?=(\d{2})+(?!\d))/g,",")+","+last;
+}
+const $=id=>document.getElementById(id);
+const inp=$("n"),out=$("out"),err=$("err"),fmt=$("fmt"),tk=$("tk"),cp=$("cp");
+function setOut(t,empty){out.textContent=t;out.classList.toggle("empty",!!empty);}
+function run(){
+  err.textContent="";fmt.textContent="";
+  const s=inp.value.replace(/[০-৯]/g,d=>BN.indexOf(d)).replace(/[,\s]/g,"");
+  if(!s){setOut("ফলাফল এখানে দেখা যাবে",true);return;}
+  if(!/^\d+$/.test(s)){err.textContent="শুধু সংখ্যা লিখুন (০-৯)";setOut("ফলাফল এখানে দেখা যাবে",true);return;}
+  if(s.length>14){err.textContent="সর্বোচ্চ ১৪ অঙ্ক লেখা যাবে";return;}
+  const clean=String(Number(s));
+  fmt.textContent=toBn(group(clean))+(tk.checked?" ৳":"");
+  setOut(conv(Number(clean))+(tk.checked?" টাকা মাত্র":""),false);
+}
+[["৫০০","500"],["১২৫০০","12500"],["১,০০,০০০","100000"],["২৫,৫০,০০০","2550000"]].forEach(([label,val])=>{
+  const b=document.createElement("button");b.type="button";b.className="chip";b.textContent=label;
+  b.onclick=()=>{inp.value=val;run();};$("chips").appendChild(b);
+});
+inp.addEventListener("input",run);tk.addEventListener("change",run);
+$("clr").onclick=()=>{inp.value="";run();inp.focus();};
+cp.onclick=async()=>{
+  if(out.classList.contains("empty"))return;
+  try{await navigator.clipboard.writeText(out.textContent);cp.textContent="কপি হয়েছে ✓";}
+  catch(e){cp.textContent="কপি করা যায়নি";}
+  setTimeout(()=>cp.textContent="কপি করুন",1600);
+};
+</script>
+</body>
+</html>
