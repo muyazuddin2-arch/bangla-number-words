@@ -36,7 +36,13 @@ html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
 *,*::before,*::after{box-sizing:inherit}
 body{margin:0;background:var(--bg);color:var(--text);font-family:"Hind Siliguri","Noto Sans Bengali",system-ui,sans-serif;line-height:1.65}
 .wrap{max-width:720px;margin:0 auto;padding:0 16px}
-header{padding:18px 0}
+header{padding:18px 0;display:flex;align-items:center;justify-content:space-between;gap:10px}
+nav a{color:var(--accent);font-weight:600;text-decoration:none;font-size:.95rem}
+.tools{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.tool{display:block;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;text-decoration:none;color:var(--text)}
+.tool:hover{border-color:var(--accent)}
+.tool b{display:block;font-size:1.05rem;margin-bottom:4px}
+.tool span{color:var(--muted);font-size:.92rem}
 .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.1rem}
 .logo{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:var(--on-accent);display:grid;place-items:center;font-size:1.2rem}
 .hero{text-align:center;padding:14px 0 22px}
@@ -75,6 +81,7 @@ footer{margin:40px 0 24px;text-align:center;color:var(--muted);font-size:.88rem}
 <div class="wrap">
   <header>
     <div class="brand"><span class="logo">৳</span><span>বাংলা সংখ্যা টুল</span></div>
+    <nav><a href="land.html">জমির কনভার্টার</a></nav>
   </header>
 
   <div class="hero">
@@ -95,6 +102,13 @@ footer{margin:40px 0 24px;text-align:center;color:var(--muted);font-size:.88rem}
       <button class="btn sec" id="clr" type="button">মুছুন</button>
     </div>
   </main>
+
+  <section>
+    <h2>আরও টুল</h2>
+    <div class="tools">
+      <a class="tool" href="land.html"><b>জমির পরিমাপ কনভার্টার</b><span>শতাংশ, কাঠা, বিঘা, একর ও বর্গফুটের হিসাব</span></a>
+    </div>
+  </section>
 
   <section>
     <h2>কীভাবে ব্যবহার করবেন</h2>
