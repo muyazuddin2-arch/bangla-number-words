@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>জমির পরিমাপ কনভার্টার | শতাংশ, কাঠা, বিঘা, একর, বর্গফুট</title>
+<meta name="description" content="ফ্রি জমির পরিমাপ কনভার্টার: শতাংশ, কাঠা, বিঘা, একর, ছটাক, বর্গফুট ও বর্গমিটারের হিসাব এক নিমেষে বের করুন।">
+<meta property="og:title" content="জমির পরিমাপ কনভার্টার">
+<meta property="og:description" content="শতাংশ, কাঠা, বিঘা, একর ও বর্গফুটের হিসাব এক চাপে। সম্পূর্ণ ফ্রি।">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0f766e">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f3f6f8;--card:#ffffff;--text:#16202a;--muted:#5b6773;--accent:#0f766e;--accent-2:#14b8a6;
+  --border:#dfe5ea;--out:#e8f5f2;--chip:#eef2f5;--on-accent:#ffffff;--shadow:0 10px 30px rgba(15,40,60,.08);
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f1418;--card:#182027;--text:#e8edf1;--muted:#97a4b0;--accent:#2dd4bf;--accent-2:#14b8a6;
+    --border:#2a343d;--out:#14302c;--chip:#222c35;--on-accent:#06201c;--shadow:0 10px 30px rgba(0,0,0,.35);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f1418;--card:#182027;--text:#e8edf1;--muted:#97a4b0;--accent:#2dd4bf;--accent-2:#14b8a6;
+  --border:#2a343d;--out:#14302c;--chip:#222c35;--on-accent:#06201c;--shadow:0 10px 30px rgba(0,0,0,.35);
+  color-scheme:dark;
+}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Hind Siliguri","Noto Sans Bengali",system-ui,sans-serif;line-height:1.65}
+.wrap{max-width:720px;margin:0 auto;padding:0 16px}
+header{padding:18px 0;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.1rem;color:var(--text);text-decoration:none}
+.logo{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:var(--on-accent);display:grid;place-items:center;font-size:1.2rem}
+nav a{color:var(--accent);font-weight:600;text-decoration:none;font-size:.95rem}
+.hero{text-align:center;padding:14px 0 22px}
+.hero h1{font-size:clamp(1.6rem,5vw,2.3rem);line-height:1.25;margin:0 0 8px;font-weight:700}
+.hero p{margin:0 auto;max-width:520px;color:var(--muted)}
+.card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:22px;box-shadow:var(--shadow)}
+.row{display:grid;grid-template-columns:1.4fr 1fr;gap:10px}
+label.l{display:block;font-weight:600;margin-bottom:6px;font-size:.95rem}
+input,select{width:100%;font:inherit;font-size:1.25rem;font-weight:600;padding:12px 14px;border-radius:12px;border:2px solid var(--border);background:var(--bg);color:var(--text);outline:none}
+select{font-size:1.05rem}
+input:focus,select:focus{border-color:var(--accent)}
+.err{min-height:1.3em;color:#d64545;font-size:.9rem;margin:6px 2px 0}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 2px}
+.chip{border:1px solid var(--border);background:var(--chip);color:var(--text);border-radius:999px;padding:6px 14px;font:inherit;font-size:.92rem;cursor:pointer}
+.chip:hover{border-color:var(--accent)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-top:16px}
+.res{background:var(--out);border:1px solid var(--border);border-radius:14px;padding:12px 14px}
+.res.me{outline:2px solid var(--accent)}
+.res small{display:block;color:var(--muted);font-size:.85rem}
+.res b{font-size:1.2rem;word-break:break-word}
+.note{margin-top:16px;font-size:.88rem;color:var(--muted);background:var(--chip);border-radius:12px;padding:10px 14px}
+section{margin-top:34px}
+section h2{font-size:1.3rem;margin:0 0 12px}
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--border);font-size:.96rem}
+th{background:var(--chip)}
+.tw{overflow-x:auto}
+details{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 16px;margin-bottom:10px}
+summary{cursor:pointer;font-weight:600}
+details p{margin:8px 0 0;color:var(--muted)}
+footer{margin:40px 0 24px;text-align:center;color:var(--muted);font-size:.88rem}
+@media (max-width:480px){.row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="brand" href="./"><span class="logo">৳</span><span>বাংলা সংখ্যা টুল</span></a>
+    <nav><a href="./">সংখ্যা → কথায়</a></nav>
+  </header>
+
+  <div class="hero">
+    <h1>জমির পরিমাপ কনভার্টার</h1>
+    <p>শতাংশ, কাঠা, বিঘা, একর ও বর্গফুটের হিসাব এক জায়গায়। যেকোনো একটা এককে লিখুন, বাকিগুলো সঙ্গে সঙ্গে দেখুন।</p>
+  </div>
+
+  <main class="card">
+    <div class="row">
+      <div><label class="l" for="v">পরিমাণ</label><input id="v" type="text" inputmode="decimal" placeholder="যেমন: ৫" autocomplete="off"></div>
+      <div><label class="l" for="u">একক</label><select id="u"></select></div>
+    </div>
+    <div class="err" id="err" role="alert"></div>
+    <div class="chips" id="chips"></div>
+    <div class="grid" id="grid"></div>
+    <div class="note">দ্রষ্টব্য: এখানে প্রচলিত মান ধরা হয়েছে (১ কাঠা = ৭২০ বর্গফুট, ১ বিঘা = ২০ কাঠা)। অঞ্চলভেদে কাঠা ও বিঘার মাপ আলাদা হতে পারে, তাই জমি কেনাবেচায় দলিলের মাপ ও স্থানীয় সার্ভেয়ারের হিসাব মিলিয়ে নিন।</div>
+  </main>
+
+  <section>
+    <h2>প্রচলিত মান</h2>
+    <div class="tw"><table>
+      <tr><th>একক</th><th>বর্গফুটে</th></tr>
+      <tr><td>১ ছটাক</td><td>৪৫</td></tr>
+      <tr><td>১ কাঠা (১৬ ছটাক)</td><td>৭২০</td></tr>
+      <tr><td>১ শতাংশ</td><td>৪৩৫.৬</td></tr>
+      <tr><td>১ বিঘা (২০ কাঠা)</td><td>১৪,৪০০</td></tr>
+      <tr><td>১ একর (১০০ শতাংশ)</td><td>৪৩,৫৬০</td></tr>
+    </table></div>
+  </section>
+
+  <section>
+    <h2>সচরাচর জিজ্ঞাসা</h2>
+    <details><summary>১ বিঘায় কত শতাংশ?</summary><p>প্রচলিত মানে ১ বিঘা প্রায় ৩৩.০৬ শতাংশের সমান।</p></details>
+    <details><summary>১ কাঠায় কত বর্গফুট?</summary><p>প্রচলিত মানে ১ কাঠা = ৭২০ বর্গফুট। অঞ্চলভেদে কিছুটা পার্থক্য থাকতে পারে।</p></details>
+    <details><summary>১ একরে কত শতাংশ?</summary><p>১ একর = ১০০ শতাংশ।</p></details>
+    <details><summary>এই টুলের হিসাব কি আইনি কাগজে ব্যবহার করা যাবে?</summary><p>না। এটা শুধু দ্রুত হিসাবের জন্য। জমি কেনাবেচা বা রেজিস্ট্রেশনে সরকারি সার্ভেয়ার ও দলিলের মাপই চূড়ান্ত।</p></details>
+  </section>
+
+  <footer>© ২০২৬ বাংলা সংখ্যা টুল · ফ্রি ও নির্ভরযোগ্য</footer>
+</div>
+
+<script>
+const UNITS=[
+  {k:"sqft",n:"বর্গফুট",f:1},
+  {k:"sqm",n:"বর্গমিটার",f:10.7639104},
+  {k:"sqyd",n:"বর্গগজ",f:9},
+  {k:"chhatak",n:"ছটাক",f:45},
+  {k:"katha",n:"কাঠা",f:720},
+  {k:"bigha",n:"বিঘা",f:14400},
+  {k:"decimal",n:"শতাংশ",f:435.6},
+  {k:"acre",n:"একর",f:43560},
+  {k:"hectare",n:"হেক্টর",f:107639.104}
+];
+const BN="০১২৩৪৫৬৭৮৯";
+const toBn=s=>String(s).replace(/\d/g,d=>BN[d]);
+const fmt=x=>toBn(x.toLocaleString("en-IN",{maximumFractionDigits:4}));
+const $=id=>document.getElementById(id);
+const v=$("v"),u=$("u"),grid=$("grid"),err=$("err");
+UNITS.forEach(x=>{const o=document.createElement("option");o.value=x.k;o.textContent=x.n;u.appendChild(o);});
+u.value="decimal";
+function run(){
+  err.textContent="";grid.innerHTML="";
+  const s=v.value.replace(/[০-৯]/g,d=>BN.indexOf(d)).replace(/[,\s]/g,"").replace("।",".");
+  if(!s)return;
+  if(!/^\d*\.?\d+$/.test(s)){err.textContent="শুধু সংখ্যা লিখুন (যেমন: ৫ বা ২.৫)";return;}
+  const val=parseFloat(s);
+  if(val>1e12){err.textContent="সংখ্যাটি অনেক বড়";return;}
+  const base=val*UNITS.find(x=>x.k===u.value).f;
+  UNITS.forEach(x=>{
+    const d=document.createElement("div");
+    d.className="res"+(x.k===u.value?" me":"");
+    d.innerHTML="<small></small><b></b>";
+    d.firstChild.textContent=x.n;
+    d.lastChild.textContent=fmt(base/x.f);
+    grid.appendChild(d);
+  });
+}
+[["১ শতাংশ","1","decimal"],["১ কাঠা","1","katha"],["১ বিঘা","1","bigha"],["১ একর","1","acre"],["১০ শতাংশ","10","decimal"]].forEach(([l,val,unit])=>{
+  const b=document.createElement("button");b.type="button";b.className="chip";b.textContent=l;
+  b.onclick=()=>{v.value=val;u.value=unit;run();};$("chips").appendChild(b);
+});
+v.addEventListener("input",run);u.addEventListener("change",run);
+v.value="5";run();
+</script>
+</body>
+</html>
