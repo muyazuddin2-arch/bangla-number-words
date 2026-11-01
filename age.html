@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>বয়স ক্যালকুলেটর | জন্মতারিখ থেকে বছর, মাস, দিনে বয়স</title>
+<meta name="description" content="ফ্রি বয়স ক্যালকুলেটর: জন্মতারিখ দিয়ে বছর, মাস ও দিনে বয়স বের করুন। চাকরির আবেদনের জন্য নির্দিষ্ট তারিখে বয়সও হিসাব করা যায়।">
+<meta property="og:title" content="বয়স ক্যালকুলেটর">
+<meta property="og:description" content="জন্মতারিখ থেকে বছর, মাস ও দিনে সঠিক বয়স জানুন। সম্পূর্ণ ফ্রি।">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0f766e">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f3f6f8;--card:#ffffff;--text:#16202a;--muted:#5b6773;--accent:#0f766e;--accent-2:#14b8a6;
+  --border:#dfe5ea;--out:#e8f5f2;--chip:#eef2f5;--on-accent:#ffffff;--shadow:0 10px 30px rgba(15,40,60,.08);
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f1418;--card:#182027;--text:#e8edf1;--muted:#97a4b0;--accent:#2dd4bf;--accent-2:#14b8a6;
+    --border:#2a343d;--out:#14302c;--chip:#222c35;--on-accent:#06201c;--shadow:0 10px 30px rgba(0,0,0,.35);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f1418;--card:#182027;--text:#e8edf1;--muted:#97a4b0;--accent:#2dd4bf;--accent-2:#14b8a6;
+  --border:#2a343d;--out:#14302c;--chip:#222c35;--on-accent:#06201c;--shadow:0 10px 30px rgba(0,0,0,.35);
+  color-scheme:dark;
+}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Hind Siliguri","Noto Sans Bengali",system-ui,sans-serif;line-height:1.65}
+.wrap{max-width:720px;margin:0 auto;padding:0 16px}
+header{padding:18px 0;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.1rem;color:var(--text);text-decoration:none}
+.logo{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:var(--on-accent);display:grid;place-items:center;font-size:1.2rem}
+nav{display:flex;gap:14px}
+nav a{color:var(--accent);font-weight:600;text-decoration:none;font-size:.95rem}
+.hero{text-align:center;padding:14px 0 22px}
+.hero h1{font-size:clamp(1.6rem,5vw,2.3rem);line-height:1.25;margin:0 0 8px;font-weight:700}
+.hero p{margin:0 auto;max-width:520px;color:var(--muted)}
+.card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:22px;box-shadow:var(--shadow)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+label.l{display:block;font-weight:600;margin-bottom:6px;font-size:.95rem}
+input[type=date]{width:100%;font:inherit;font-size:1.1rem;font-weight:600;padding:12px 14px;border-radius:12px;border:2px solid var(--border);background:var(--bg);color:var(--text);outline:none;min-height:50px}
+input[type=date]:focus{border-color:var(--accent)}
+.hint{font-size:.85rem;color:var(--muted);margin-top:4px}
+.err{min-height:1.3em;color:#d64545;font-size:.9rem;margin:8px 2px 0}
+.btns{display:flex;gap:10px;margin-top:6px;flex-wrap:wrap}
+.btn{font:inherit;font-weight:600;border:0;border-radius:12px;padding:11px 20px;cursor:pointer;background:var(--accent);color:var(--on-accent)}
+.btn.sec{background:var(--chip);color:var(--text);border:1px solid var(--border)}
+.main-res{margin-top:16px;background:var(--out);border:1px solid var(--border);border-radius:14px;padding:18px;text-align:center}
+.main-res small{display:block;color:var(--muted)}
+.main-res b{font-size:clamp(1.4rem,5vw,1.9rem);line-height:1.4;display:block;margin-top:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-top:12px}
+.res{background:var(--chip);border:1px solid var(--border);border-radius:14px;padding:12px 14px}
+.res small{display:block;color:var(--muted);font-size:.85rem}
+.res b{font-size:1.1rem;word-break:break-word}
+section{margin-top:34px}
+section h2{font-size:1.3rem;margin:0 0 12px}
+details{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 16px;margin-bottom:10px}
+summary{cursor:pointer;font-weight:600}
+details p{margin:8px 0 0;color:var(--muted)}
+input.txt{width:100%;font:inherit;font-size:1.1rem;font-weight:600;padding:12px 14px;border-radius:12px;border:2px solid var(--border);background:var(--bg);color:var(--text);outline:none;min-height:50px}
+input.txt:focus{border-color:var(--accent)}
+.card.sub{margin-bottom:16px;box-shadow:none}
+.card.sub h3{margin:0 0 4px;font-size:1.1rem}
+.ok{color:var(--accent)}.bad{color:#d64545}
+.hint.pad{margin-top:10px}
+footer{margin:40px 0 24px;text-align:center;color:var(--muted);font-size:.88rem}
+@media (max-width:480px){.row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="brand" href="./"><span class="logo">৳</span><span>বাংলা সংখ্যা টুল</span></a>
+    <nav><a href="./">সংখ্যা → কথায়</a><a href="land.html">জমির কনভার্টার</a></nav>
+  </header>
+
+  <div class="hero">
+    <h1>বয়স ক্যালকুলেটর</h1>
+    <p>জন্মতারিখ দিন, বছর, মাস ও দিনে সঠিক বয়স জানুন। চাকরির আবেদনের জন্য নির্দিষ্ট তারিখে বয়সও দেখা যায়।</p>
+  </div>
+
+  <main class="card">
+    <div class="row">
+      <div><label class="l" for="dob">জন্মতারিখ</label><input id="dob" type="date"></div>
+      <div><label class="l" for="asof">কোন তারিখে বয়স?</label><input id="asof" type="date"><div class="hint">ডিফল্ট: আজকের তারিখ</div></div>
+    </div>
+    <div class="err" id="err" role="alert"></div>
+    <div class="btns">
+      <button class="btn sec" id="today" type="button">আজকের তারিখ দিন</button>
+      <button class="btn sec" id="clr" type="button">মুছুন</button>
+    </div>
+    <div id="result"></div>
+  </main>
+
+  <section>
+    <h2>আরও কাজের হিসাব</h2>
+    <p class="hint" style="margin:-6px 0 12px">এই তিনটা হিসাবে ওপরের জন্মতারিখ ব্যবহার হবে।</p>
+
+    <div class="card sub">
+      <h3>চাকরির বয়সসীমা যাচাই</h3>
+      <p class="hint">বিজ্ঞপ্তিতে দেওয়া তারিখ ও সর্বোচ্চ বয়স লিখুন।</p>
+      <div class="row">
+        <div><label class="l" for="ref">বয়স গণনার তারিখ</label><input id="ref" type="date"></div>
+        <div><label class="l" for="lim">সর্বোচ্চ বয়স (বছর)</label><input id="lim" class="txt" type="text" inputmode="numeric" placeholder="যেমন: ৩০" autocomplete="off"></div>
+      </div>
+      <div id="jobOut"></div>
+    </div>
+
+    <div class="card sub">
+      <h3>কবে নির্দিষ্ট বয়স পূর্ণ হবে?</h3>
+      <div class="row">
+        <div><label class="l" for="tn">কত বছর?</label><input id="tn" class="txt" type="text" inputmode="numeric" value="১৮" autocomplete="off"></div>
+      </div>
+      <div id="tnOut"></div>
+    </div>
+
+    <div class="card sub">
+      <h3>দুজনের বয়সের পার্থক্য</h3>
+      <div class="row">
+        <div><label class="l" for="dob2">অন্যজনের জন্মতারিখ</label><input id="dob2" type="date"></div>
+      </div>
+      <div id="cmpOut"></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>সচরাচর জিজ্ঞাসা</h2>
+    <details><summary>চাকরির আবেদনের বয়স কীভাবে দেখব?</summary><p>“কোন তারিখে বয়স?” ঘরে বিজ্ঞপ্তিতে দেওয়া নির্দিষ্ট তারিখ বেছে নিন। তখন ওই তারিখে আপনার বয়স কত হবে তা দেখা যাবে।</p></details>
+    <details><summary>হিসাব কি নির্ভুল?</summary><p>হ্যাঁ, লিপ ইয়ার ও মাসের দিনসংখ্যা ধরেই হিসাব করা হয়। তবে সরকারি বা আইনি কাগজে চূড়ান্ত বয়স সংশ্লিষ্ট কর্তৃপক্ষের নিয়মে নির্ধারিত হয়।</p></details>
+    <details><summary>আমার তথ্য কি কোথাও জমা হয়?</summary><p>না। সব হিসাব আপনার ব্রাউজারেই হয়, কোনো তথ্য আমাদের কাছে পাঠানো হয় না।</p></details>
+  </section>
+
+  <footer>© ২০২৬ বাংলা সংখ্যা টুল · ফ্রি ও নির্ভরযোগ্য</footer>
+</div>
+
+<script>
+const BN="০১২৩৪৫৬৭৮৯";
+const toBn=s=>String(s).replace(/\d/g,d=>BN[d]);
+const num=n=>toBn(n.toLocaleString("en-IN"));
+const MONTHS=["জানুয়ারি","ফেব্রুয়ারি","মার্চ","এপ্রিল","মে","জুন","জুলাই","আগস্ট","সেপ্টেম্বর","অক্টোবর","নভেম্বর","ডিসেম্বর"];
+const DAYS=["রবিবার","সোমবার","মঙ্গলবার","বুধবার","বৃহস্পতিবার","শুক্রবার","শনিবার"];
+const $=id=>document.getElementById(id);
+const dob=$("dob"),asof=$("asof"),err=$("err"),result=$("result");
+const pad=n=>String(n).padStart(2,"0");
+function todayStr(){const d=new Date();return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());}
+function parse(s){const [y,m,d]=s.split("-").map(Number);return {y,m,d};}
+const utc=o=>Date.UTC(o.y,o.m-1,o.d);
+const dim=(y,m)=>new Date(y,m,0).getDate();
+const isLeap=y=>(y%4===0&&y%100!==0)||y%400===0;
+const label=o=>toBn(o.d)+" "+MONTHS[o.m-1]+" "+toBn(o.y);
+const weekday=o=>DAYS[new Date(Date.UTC(o.y,o.m-1,o.d)).getUTCDay()];
+function box(small,big){const d=document.createElement("div");d.className="res";const s=document.createElement("small");s.textContent=small;const b=document.createElement("b");b.textContent=big;d.append(s,b);return d;}
+function run(){
+  err.textContent="";result.innerHTML="";
+  if(!dob.value)return;
+  const b=parse(dob.value),t=parse(asof.value||todayStr());
+  if(utc(t)<utc(b)){err.textContent="জন্মতারিখ নির্দিষ্ট তারিখের পরে হতে পারে না";return;}
+  let y=t.y-b.y,m=t.m-b.m,d=t.d-b.d;
+  if(d<0){m--;const pm=t.m===1?12:t.m-1,py=t.m===1?t.y-1:t.y;d+=dim(py,pm);}
+  if(m<0){y--;m+=12;}
+  const totalDays=Math.round((utc(t)-utc(b))/86400000);
+  const totalMonths=y*12+m;
+  // next birthday
+  let ny=t.y;
+  const bd=(yr)=>{ if(b.m===2&&b.d===29&&!isLeap(yr))return {y:yr,m:3,d:1}; return {y:yr,m:b.m,d:b.d}; };
+  let nb=bd(ny);
+  if(utc(nb)<=utc(t)){ny++;nb=bd(ny);}
+  const left=Math.round((utc(nb)-utc(t))/86400000);
+
+  const main=document.createElement("div");main.className="main-res";
+  const sm=document.createElement("small");sm.textContent=label(t)+" তারিখে বয়স";
+  const bg=document.createElement("b");bg.textContent=toBn(y)+" বছর "+toBn(m)+" মাস "+toBn(d)+" দিন";
+  main.append(sm,bg);result.appendChild(main);
+
+  const g=document.createElement("div");g.className="grid";
+  g.append(
+    box("মোট মাস",num(totalMonths)+" মাস"),
+    box("মোট সপ্তাহ",num(Math.floor(totalDays/7))+" সপ্তাহ"),
+    box("মোট দিন",num(totalDays)+" দিন"),
+    box("মোট ঘণ্টা",num(totalDays*24)+" ঘণ্টা"),
+    box("জন্মবার",weekday(b)),
+    box("পরবর্তী জন্মদিন",label(nb)+" ("+weekday(nb)+"), আর "+num(left)+" দিন বাকি")
+  );
+  result.appendChild(g);
+}
+const en=s=>s.replace(/[০-৯]/g,d=>BN.indexOf(d)).replace(/[\s,]/g,"");
+const addY=(b,n)=>{const y=b.y+n;if(b.m===2&&b.d===29&&!isLeap(y))return {y,m:3,d:1};return {y,m:b.m,d:b.d};};
+const fromUtc=ms=>{const x=new Date(ms);return {y:x.getUTCFullYear(),m:x.getUTCMonth()+1,d:x.getUTCDate()};};
+const diffYMD=(b,t)=>{let y=t.y-b.y,m=t.m-b.m,d=t.d-b.d;if(d<0){m--;const pm=t.m===1?12:t.m-1,py=t.m===1?t.y-1:t.y;d+=dim(py,pm);}if(m<0){y--;m+=12;}return {y,m,d};};
+const ymd=o=>toBn(o.y)+" বছর "+toBn(o.m)+" মাস "+toBn(o.d)+" দিন";
+function note(el,t){el.innerHTML="";const p=document.createElement("div");p.className="hint pad";p.textContent=t;el.appendChild(p);}
+function showBox(el,small,big,cls,foot){
+  el.innerHTML="";
+  const m=document.createElement("div");m.className="main-res";
+  const s=document.createElement("small");s.textContent=small;
+  const b=document.createElement("b");b.textContent=big;if(cls)b.className=cls;
+  m.append(s,b);
+  if(foot){const f=document.createElement("small");f.style.marginTop="8px";f.textContent=foot;m.appendChild(f);}
+  el.appendChild(m);
+}
+function job(){
+  const el=$("jobOut");
+  if(!dob.value||!$("ref").value||!$("lim").value){note(el,"জন্মতারিখ, গণনার তারিখ ও সর্বোচ্চ বয়স দিন।");return;}
+  const lim=parseInt(en($("lim").value),10);
+  if(!(lim>0&&lim<120)){note(el,"সঠিক বয়সসীমা লিখুন।");return;}
+  const b=parse(dob.value),t=parse($("ref").value);
+  if(utc(t)<utc(b)){note(el,"গণনার তারিখ জন্মতারিখের আগে হতে পারে না।");return;}
+  const a=diffYMD(b,t),last=addY(b,lim),ok=utc(t)<=utc(last);
+  const gap=Math.round(Math.abs(utc(last)-utc(t))/86400000);
+  const foot=(ok?label(last)+" পর্যন্ত এই সীমার মধ্যে থাকবেন (গণনার তারিখ থেকে আর "+num(gap)+" দিন)।":label(last)+" তারিখেই সীমা পূর্ণ হয়েছে, গণনার তারিখের "+num(gap)+" দিন আগে।")+" এখানে ধরা হয়েছে বয়স সর্বোচ্চ "+toBn(lim)+" বছর পূর্ণ। বিজ্ঞপ্তির শর্ত মিলিয়ে নিন, কারণ নিয়ম আলাদা হতে পারে।";
+  showBox(el,label(t)+" তারিখে আপনার বয়স "+ymd(a),ok?"✓ বয়সসীমার মধ্যে আছেন":"✗ বয়সসীমা পেরিয়ে গেছে",ok?"ok":"bad",foot);
+}
+function turn(){
+  const el=$("tnOut");
+  if(!dob.value){note(el,"আগে ওপরে জন্মতারিখ দিন।");return;}
+  const n=parseInt(en($("tn").value),10);
+  if(!(n>=0&&n<150)){note(el,"সঠিক বয়স লিখুন।");return;}
+  const b=parse(dob.value),tg=addY(b,n),td=parse(todayStr());
+  const days=Math.round((utc(tg)-utc(td))/86400000);
+  const msg=days>0?"আর "+num(days)+" দিন বাকি":days===0?"আজই পূর্ণ হচ্ছে":num(-days)+" দিন আগে পূর্ণ হয়েছে";
+  showBox(el,toBn(n)+" বছর পূর্ণ হবে",label(tg)+" ("+weekday(tg)+")",null,msg);
+}
+function cmp(){
+  const el=$("cmpOut");
+  if(!dob.value||!$("dob2").value){note(el,"দুজনের জন্মতারিখ দিন।");return;}
+  const b=parse(dob.value),c=parse($("dob2").value);
+  if(utc(b)===utc(c)){showBox(el,"পার্থক্য","দুজনের জন্ম একই দিনে");return;}
+  const youOlder=utc(b)<utc(c);
+  const d=diffYMD(youOlder?b:c,youOlder?c:b);
+  const days=Math.round(Math.abs(utc(b)-utc(c))/86400000);
+  showBox(el,youOlder?"আপনি বড়":"আপনি ছোট",ymd(d),null,"মোট "+num(days)+" দিনের ব্যবধান");
+}
+function extra(){job();turn();cmp();}
+["ref","lim","tn","dob2"].forEach(id=>$(id).addEventListener("input",extra));
+dob.addEventListener("input",extra);
+extra();
+asof.value=todayStr();
+dob.addEventListener("input",run);asof.addEventListener("input",run);
+$("today").onclick=()=>{asof.value=todayStr();run();};
+$("clr").onclick=()=>{dob.value="";asof.value=todayStr();run();};
+</script>
+</body>
+</html>
