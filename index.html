@@ -36,7 +36,8 @@ html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
 *,*::before,*::after{box-sizing:inherit}
 body{margin:0;background:var(--bg);color:var(--text);font-family:"Hind Siliguri","Noto Sans Bengali",system-ui,sans-serif;line-height:1.65}
 .wrap{max-width:720px;margin:0 auto;padding:0 16px}
-header{padding:18px 0;display:flex;align-items:center;justify-content:space-between;gap:10px}
+header{padding:18px 0;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+nav{display:flex;gap:14px}
 nav a{color:var(--accent);font-weight:600;text-decoration:none;font-size:.95rem}
 .tools{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
 .tool{display:block;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;text-decoration:none;color:var(--text)}
@@ -81,7 +82,7 @@ footer{margin:40px 0 24px;text-align:center;color:var(--muted);font-size:.88rem}
 <div class="wrap">
   <header>
     <div class="brand"><span class="logo">৳</span><span>বাংলা সংখ্যা টুল</span></div>
-    <nav><a href="land.html">জমির কনভার্টার</a></nav>
+    <nav><a href="land.html">জমির কনভার্টার</a><a href="age.html">বয়স ক্যালকুলেটর</a></nav>
   </header>
 
   <div class="hero">
@@ -107,6 +108,7 @@ footer{margin:40px 0 24px;text-align:center;color:var(--muted);font-size:.88rem}
     <h2>আরও টুল</h2>
     <div class="tools">
       <a class="tool" href="land.html"><b>জমির পরিমাপ কনভার্টার</b><span>শতাংশ, কাঠা, বিঘা, একর ও বর্গফুটের হিসাব</span></a>
+      <a class="tool" href="age.html"><b>বয়স ক্যালকুলেটর</b><span>বয়স হিসাব, চাকরির বয়সসীমা যাচাই ও আরও</span></a>
     </div>
   </section>
 
