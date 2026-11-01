@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>বাংলা ক্যালকুলেটর | শতকরা, বর্গমূল, মেমোরি ও কথায় ফলাফল</title>
+<meta name="description" content="ফ্রি অনলাইন বাংলা ক্যালকুলেটর: বাংলা সংখ্যায় হিসাব, শতকরা, বর্গমূল, বন্ধনী, মেমোরি ও হিসাবের ইতিহাস। ফলাফল বাংলা কথায়ও দেখা যায়।">
+<meta property="og:title" content="বাংলা ক্যালকুলেটর">
+<meta property="og:description" content="বাংলা সংখ্যায় হিসাব করুন, ফলাফল কথায় দেখুন। সম্পূর্ণ ফ্রি।">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0f766e">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f3f6f8;--card:#ffffff;--text:#16202a;--muted:#5b6773;--accent:#0f766e;--accent-2:#14b8a6;
+  --border:#dfe5ea;--out:#e8f5f2;--chip:#eef2f5;--on-accent:#ffffff;--shadow:0 10px 30px rgba(15,40,60,.08);
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f1418;--card:#182027;--text:#e8edf1;--muted:#97a4b0;--accent:#2dd4bf;--accent-2:#14b8a6;
+    --border:#2a343d;--out:#14302c;--chip:#222c35;--on-accent:#06201c;--shadow:0 10px 30px rgba(0,0,0,.35);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f1418;--card:#182027;--text:#e8edf1;--muted:#97a4b0;--accent:#2dd4bf;--accent-2:#14b8a6;
+  --border:#2a343d;--out:#14302c;--chip:#222c35;--on-accent:#06201c;--shadow:0 10px 30px rgba(0,0,0,.35);
+  color-scheme:dark;
+}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Hind Siliguri","Noto Sans Bengali",system-ui,sans-serif;line-height:1.6}
+.wrap{max-width:480px;margin:0 auto;padding:0 16px}
+header{padding:18px 0;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.1rem;color:var(--text);text-decoration:none}
+.logo{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:var(--on-accent);display:grid;place-items:center;font-size:1.2rem}
+nav{display:flex;gap:14px;flex-wrap:wrap}
+nav a{color:var(--accent);font-weight:600;text-decoration:none;font-size:.95rem}
+h1{font-size:1.6rem;text-align:center;margin:6px 0 14px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:16px;box-shadow:var(--shadow)}
+#ex{width:100%;font:inherit;font-size:1.5rem;font-weight:600;padding:12px 14px;border-radius:12px;border:2px solid var(--border);background:var(--bg);color:var(--text);outline:none;text-align:right}
+#ex:focus{border-color:var(--accent)}
+.disp{margin:10px 2px 0;text-align:right}
+#pv{font-size:2rem;font-weight:700;min-height:2.6rem;word-break:break-all;color:var(--accent)}
+#wd{font-size:.98rem;color:var(--muted);min-height:1.5em;word-break:break-word}
+#er{font-size:.9rem;color:#d64545;min-height:1.3em}
+.tools{display:flex;gap:8px;align-items:center;justify-content:space-between;margin:6px 0 10px;flex-wrap:wrap}
+.tools label{font-size:.92rem;display:flex;gap:6px;align-items:center;cursor:pointer}
+.tools input{accent-color:var(--accent);width:17px;height:17px}
+.mini{font:inherit;font-size:.88rem;border:1px solid var(--border);background:var(--chip);color:var(--text);border-radius:10px;padding:5px 12px;cursor:pointer}
+.mem{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:8px}
+.keys{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.k{font:inherit;font-size:1.3rem;font-weight:600;padding:14px 0;border-radius:12px;border:1px solid var(--border);background:var(--chip);color:var(--text);cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent}
+.k:active{transform:scale(.96)}
+.k.op{background:var(--out);color:var(--accent)}
+.k.fn{color:#d64545}
+.k.eq{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.mem .k{font-size:.95rem;padding:8px 0}
+section{margin-top:26px}
+section h2{font-size:1.15rem;margin:0 0 10px}
+#hist{display:grid;gap:8px}
+.h{width:100%;text-align:right;font:inherit;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:10px 14px;color:var(--text);cursor:pointer}
+.h small{display:block;color:var(--muted);word-break:break-all}
+.h b{color:var(--accent)}
+.muted{color:var(--muted);font-size:.92rem}
+details{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 16px;margin-bottom:10px}
+summary{cursor:pointer;font-weight:600}
+details p{margin:8px 0 0;color:var(--muted)}
+footer{margin:36px 0 24px;text-align:center;color:var(--muted);font-size:.88rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="brand" href="./"><span class="logo">৳</span><span>বাংলা সংখ্যা টুল</span></a>
+    <nav><a href="./">সংখ্যা → কথায়</a><a href="land.html">জমি</a><a href="age.html">বয়স</a></nav>
+  </header>
+
+  <h1>বাংলা ক্যালকুলেটর</h1>
+
+  <main class="card">
+    <input id="ex" type="text" autocomplete="off" spellcheck="false" placeholder="০" aria-label="হিসাব লিখুন">
+    <div class="disp">
+      <div id="pv"></div>
+      <div id="wd"></div>
+      <div id="er" role="alert"></div>
+    </div>
+    <div class="tools">
+      <label><input type="checkbox" id="bn" checked> বাংলা সংখ্যা</label>
+      <div><button class="mini" id="cp" type="button">ফলাফল কপি</button></div>
+    </div>
+    <div class="mem" id="mem"></div>
+    <div class="keys" id="keys"></div>
+  </main>
+
+  <section>
+    <h2>হিসাবের ইতিহাস</h2>
+    <div id="hist"></div>
+    <p class="muted" id="hnone">এখনো কোনো হিসাব করা হয়নি।</p>
+    <button class="mini" id="hclr" type="button" style="margin-top:10px">ইতিহাস মুছুন</button>
+  </section>
+
+  <section>
+    <h2>সচরাচর জিজ্ঞাসা</h2>
+    <details><summary>শতকরা (%) কীভাবে কাজ করে?</summary><p>৫০% লিখলে ০.৫ হয়। আর “২০০ + ১০%” লিখলে ২০০-এর ১০% যোগ হয়ে ২২০ আসে। “২০০ − ১০%” দিলে ১৮০ আসবে।</p></details>
+    <details><summary>বর্গমূল ও ঘাত কীভাবে লিখব?</summary><p>√ বাটন চেপে সংখ্যা লিখুন, যেমন √১৬ = ৪। ঘাতের জন্য ^ ব্যবহার করুন, যেমন ২^১০ = ১,০২৪।</p></details>
+    <details><summary>কথায় ফলাফল কখন দেখায়?</summary><p>ফলাফল পূর্ণসংখ্যা হলে (দশমিক ছাড়া) নিচে বাংলা কথায় দেখায়, যেমন ১২,৫০০ = বারো হাজার পাঁচ শত।</p></details>
+    <details><summary>আমার হিসাব কি কোথাও জমা হয়?</summary><p>না। সব হিসাব আপনার ব্রাউজারেই হয়। ইতিহাস শুধু আপনার ডিভাইসে থাকে।</p></details>
+  </section>
+
+  <footer>© ২০২৬ বাংলা সংখ্যা টুল · ফ্রি ও নির্ভরযোগ্য</footer>
+</div>
+
+<script>
+const BN="০১২৩৪৫৬৭৮৯";
+const toBn=s=>String(s).replace(/\d/g,d=>BN[d]);
+const W="শূন্য,এক,দুই,তিন,চার,পাঁচ,ছয়,সাত,আট,নয়,দশ,এগারো,বারো,তেরো,চৌদ্দ,পনেরো,ষোলো,সতেরো,আঠারো,উনিশ,বিশ,একুশ,বাইশ,তেইশ,চব্বিশ,পঁচিশ,ছাব্বিশ,সাতাশ,আঠাশ,ঊনত্রিশ,ত্রিশ,একত্রিশ,বত্রিশ,তেত্রিশ,চৌত্রিশ,পঁয়ত্রিশ,ছত্রিশ,সাঁইত্রিশ,আটত্রিশ,ঊনচল্লিশ,চল্লিশ,একচল্লিশ,বিয়াল্লিশ,তেতাল্লিশ,চুয়াল্লিশ,পঁয়তাল্লিশ,ছেচল্লিশ,সাতচল্লিশ,আটচল্লিশ,ঊনপঞ্চাশ,পঞ্চাশ,একান্ন,বায়ান্ন,তিপ্পান্ন,চুয়ান্ন,পঞ্চান্ন,ছাপ্পান্ন,সাতান্ন,আটান্ন,ঊনষাট,ষাট,একষট্টি,বাষট্টি,তেষট্টি,চৌষট্টি,পঁয়ষট্টি,ছেষট্টি,সাতষট্টি,আটষট্টি,ঊনসত্তর,সত্তর,একাত্তর,বাহাত্তর,তিয়াত্তর,চুয়াত্তর,পঁচাত্তর,ছিয়াত্তর,সাতাত্তর,আটাত্তর,ঊনাশি,আশি,একাশি,বিরাশি,তিরাশি,চুরাশি,পঁচাশি,ছিয়াশি,সাতাশি,আটাশি,ঊননব্বই,নব্বই,একানব্বই,বিরানব্বই,তিরানব্বই,চুরানব্বই,পঁচানব্বই,ছিয়ানব্বই,সাতানব্বই,আটানব্বই,নিরানব্বই".split(",");
+function conv(n){
+  if(n===0)return W[0];
+  const o=[];
+  const cr=Math.floor(n/1e7); if(cr)o.push((cr>=100?conv(cr):W[cr])+" কোটি"); n%=1e7;
+  const lk=Math.floor(n/1e5); if(lk)o.push(W[lk]+" লক্ষ"); n%=1e5;
+  const th=Math.floor(n/1e3); if(th)o.push(W[th]+" হাজার"); n%=1e3;
+  const h=Math.floor(n/100); if(h)o.push(W[h]+" শত"); n%=100;
+  if(n)o.push(W[n]);
+  return o.join(" ");
+}
+
+/* ---- safe expression evaluator (no eval) ---- */
+function calc(src){
+  const s=src.replace(/[০-৯]/g,d=>BN.indexOf(d)).replace(/[×xX*]/g,"*").replace(/[÷\/]/g,"/").replace(/[−–]/g,"-").replace(/sqrt/gi,"√").replace(/[,\s]/g,"");
+  const t=s.match(/\d+\.?\d*|\.\d+|[+\-*\/^()%√]/g)||[];
+  if(t.join("")!==s)throw new Error("ভুল এক্সপ্রেশন");
+  let i=0;const peek=()=>t[i];
+  function expr(){
+    let [v]=term();
+    while(peek()==="+"||peek()==="-"){
+      const op=t[i++];const [x,p]=term();
+      const add=p?v*x:x;
+      v=op==="+"?v+add:v-add;
+    }
+    return [v,false];
+  }
+  function term(){
+    let [v,p]=unary();
+    while(peek()==="*"||peek()==="/"){
+      const op=t[i++];const [x]=unary();
+      if(op==="/"){if(x===0)throw new Error("শূন্য দিয়ে ভাগ করা যায় না");v/=x;}else v*=x;
+      p=false;
+    }
+    return [v,p];
+  }
+  function unary(){
+    const c=peek();
+    if(c==="-"){i++;const [x]=unary();return [-x,false];}
+    if(c==="+"){i++;return unary();}
+    if(c==="√"){i++;const [x]=unary();if(x<0)throw new Error("ঋণাত্মক সংখ্যার বর্গমূল হয় না");return [Math.sqrt(x),false];}
+    return power();
+  }
+  function power(){
+    let [v,p]=postfix();
+    if(peek()==="^"){i++;const [x]=unary();v=Math.pow(v,x);p=false;}
+    return [v,p];
+  }
+  function postfix(){
+    let v=primary(),p=false;
+    while(peek()==="%"){i++;v/=100;p=true;}
+    return [v,p];
+  }
+  function primary(){
+    const c=t[i++];
+    if(c===undefined)throw new Error("হিসাব অসম্পূর্ণ");
+    if(c==="("){
+      const [v]=expr();
+      if(i<t.length){if(t[i]===")")i++;else throw new Error("বন্ধনী মেলেনি");}
+      return v;
+    }
+    if(/^[\d.]/.test(c))return parseFloat(c);
+    throw new Error("ভুল এক্সপ্রেশন");
+  }
+  const [r]=expr();
+  if(i<t.length)throw new Error("ভুল এক্সপ্রেশন");
+  if(!isFinite(r))throw new Error("ফলাফল অনেক বড়");
+  return Number(r.toPrecision(12));
+}
+
+/* ---- UI ---- */
+const $=id=>document.getElementById(id);
+const ex=$("ex"),pv=$("pv"),wd=$("wd"),er=$("er"),bnBox=$("bn");
+let fresh=false,mem=0,hist=[];
+try{hist=JSON.parse(localStorage.getItem("calcHist")||"[]");}catch(e){hist=[];}
+const saveHist=()=>{try{localStorage.setItem("calcHist",JSON.stringify(hist.slice(0,15)));}catch(e){}};
+const fmt=n=>{const s=n.toLocaleString("en-IN",{maximumFractionDigits:10});return bnBox.checked?toBn(s):s;};
+const plain=n=>{const s=n.toLocaleString("en-US",{useGrouping:false,maximumFractionDigits:10});return bnBox.checked?toBn(s):s;};
+const words=r=>(!Number.isInteger(r)||Math.abs(r)>=1e14)?"":(r<0?"ঋণাত্মক ":"")+conv(Math.abs(r));
+
+function run(){
+  er.textContent="";
+  if(!ex.value.trim()){pv.textContent="";wd.textContent="";return;}
+  try{const r=calc(ex.value);pv.textContent=fmt(r);const w=words(r);wd.textContent=w?"কথায়: "+w:"";}
+  catch(e){pv.textContent="";wd.textContent="";}
+}
+function ins(t){
+  if(fresh&&/^[\d.√(]/.test(t))ex.value="";
+  fresh=false;
+  ex.value+=/^\d+$/.test(t)&&bnBox.checked?toBn(t):t;
+  run();
+}
+function equals(){
+  if(!ex.value.trim())return;
+  try{
+    const r=calc(ex.value);
+    hist.unshift({e:ex.value,r});hist=hist.slice(0,15);saveHist();renderHist();
+    ex.value=plain(r);fresh=true;run();
+  }catch(e){er.textContent=e.message;}
+}
+function memAct(a){
+  try{
+    if(a==="MC")mem=0;
+    else if(a==="MR"){ins(plain(mem));return;}
+    else{const r=calc(ex.value);mem+=a==="M+"?r:-r;fresh=true;}
+  }catch(e){er.textContent="আগে একটা সঠিক হিসাব দিন";}
+  updMem();
+}
+function updMem(){const b=$("mem").children[1];b.textContent=mem?"MR ("+fmt(mem)+")":"MR";}
+
+const KEYS=[["AC","ac","fn"],["⌫","bs","fn"],["(","(","op"],[")",")","op"],
+["^","^","op"],["√","√","op"],["%","%","op"],["÷","÷","op"],
+["7"],["8"],["9"],["×","×","op"],["4"],["5"],["6"],["−","−","op"],
+["1"],["2"],["3"],["+","+","op"],["0"],["."],["00"],["=","=","eq"]];
+function drawKeys(){
+  const k=$("keys");k.innerHTML="";
+  KEYS.forEach(([l,a,c])=>{
+    const b=document.createElement("button");b.type="button";b.className="k"+(c?" "+c:"");
+    b.textContent=/^\d+$/.test(l)&&bnBox.checked?toBn(l):l;
+    b.setAttribute("data-a",a||l);k.appendChild(b);
+  });
+}
+$("keys").addEventListener("click",e=>{
+  const b=e.target.closest("button");if(!b)return;
+  const a=b.getAttribute("data-a");
+  if(a==="ac"){ex.value="";fresh=false;run();}
+  else if(a==="bs"){ex.value=ex.value.slice(0,-1);fresh=false;run();}
+  else if(a==="=")equals();
+  else ins(a);
+});
+["MC","MR","M+","M−"].forEach(m=>{
+  const b=document.createElement("button");b.type="button";b.className="k";b.textContent=m;
+  b.onclick=()=>memAct(m==="M−"?"M-":m);$("mem").appendChild(b);
+});
+function renderHist(){
+  const h=$("hist");h.innerHTML="";
+  $("hnone").style.display=hist.length?"none":"block";
+  $("hclr").style.display=hist.length?"inline-block":"none";
+  hist.forEach(x=>{
+    const b=document.createElement("button");b.type="button";b.className="h";
+    const s=document.createElement("small");s.textContent=x.e;
+    const v=document.createElement("b");v.textContent="= "+fmt(x.r);
+    b.append(s,v);
+    b.onclick=()=>{ex.value=x.e;fresh=false;run();};
+    h.appendChild(b);
+  });
+}
+$("hclr").onclick=()=>{hist=[];saveHist();renderHist();};
+$("cp").onclick=async()=>{
+  const b=$("cp");if(!pv.textContent)return;
+  try{await navigator.clipboard.writeText(pv.textContent);b.textContent="কপি হয়েছে ✓";}
+  catch(e){b.textContent="কপি হয়নি";}
+  setTimeout(()=>b.textContent="ফলাফল কপি",1500);
+};
+bnBox.addEventListener("change",()=>{
+  if(ex.value){try{const r=calc(ex.value);if(fresh)ex.value=plain(r);else ex.value=bnBox.checked?toBn(ex.value):ex.value.replace(/[০-৯]/g,d=>BN.indexOf(d));}catch(e){}}
+  drawKeys();renderHist();updMem();run();
+});
+ex.addEventListener("input",()=>{fresh=false;run();});
+ex.addEventListener("keydown",e=>{
+  if(e.key==="Enter"){e.preventDefault();equals();}
+  if(e.key==="Escape"){ex.value="";run();}
+});
+if(matchMedia("(pointer:coarse)").matches)ex.readOnly=true;
+drawKeys();renderHist();updMem();
+</script>
+</body>
+</html>
